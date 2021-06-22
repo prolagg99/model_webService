@@ -76,7 +76,7 @@ public class Greeting extends HttpServlet {
             double magn_x, double magn_y, double magn_z, int steps) {
         String result = "";
         try {
-            DataSource source = new DataSource("E:/Master/DataSet/TEST/datamodel3.arff");
+            DataSource source = new DataSource("E:/Master/DataSet/OurDataSet/OurDataSetArff.arff");
             Instances dataset = source.getDataSet();
             dataset.setClassIndex(dataset.numAttributes() - 1);
             int numClasses = dataset.numClasses();
@@ -94,7 +94,7 @@ public class Greeting extends HttpServlet {
             Instances newdata = Filter.useFilter(dataset, normalize);
 
             // load test data
-            DataSource source2 = new DataSource("E:/Master/DataSet/TEST/datamodel3.arff");
+            DataSource source2 = new DataSource("E:/Master/DataSet/OurDataSet/ourDataSet50Last.arff");
             Instances testdata = source2.getDataSet();
             testdata.setClassIndex(testdata.numAttributes() - 1);
 
@@ -117,7 +117,7 @@ public class Greeting extends HttpServlet {
             
             // make prediction of a new instance using saved model
             // load the model
-            Classifier cls = (Classifier) weka.core.SerializationHelper.read("E:/Master/DataSet/TEST/modelMer.model");
+            Classifier cls = (Classifier) weka.core.SerializationHelper.read("E:/Master/DataSet/OurDataSet/OurDataSetModelNNS.model");
 
             Instances labeled2 = new Instances(testdata);
             double value = cls.classifyInstance(testdata.lastInstance());
